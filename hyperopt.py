@@ -6,14 +6,16 @@ from train_runner import TrainRunner
 if __name__ == '__main__':
     train_runner = TrainRunner('test123')
 
-    bayesian_opt = GPyOpt.methods.BayesianOptimization(train_runner.f, hyperopt_conf.definition,
+    bayesian_opt = GPyOpt.methods.BayesianOptimization(train_runner.f,
+                                                    domain=hyperopt_conf.definition,
                                                     acquisition_type = 'EI',
                                                     normalize_Y = True,
                                                     initial_design_numdata = 1,
                                                     evaluator_type = 'local_penalization',
                                                     batch_size = hyperopt_conf.batch_size,
                                                     num_cores = hyperopt_conf.num_cores,
-                                                    acquisition_jitter = 0)
+                                                    acquisition_jitter = 0,
+                                                    maximize=True)
 
     bayesian_opt.run_optimization(hyperopt_conf.max_iter)
 

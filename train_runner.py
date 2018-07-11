@@ -16,9 +16,9 @@ class TrainRunner(object):
         Function to optimize
         Runs a training process and wait for its termination
         '''
-        conf_path = self.conf_gen.generate(params)
+        run_id = self.env_name + '_' + datetime.now().strftime("%Y-%m-%d_%H-%M-%S.%f")
 
-        run_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S.%f")
+        conf_path = self.conf_gen.generate(self.env_name, params, run_id)
         proc = self.start_train_process(conf_path, run_id)
         for line in iter(proc.stdout.readline, b''):
             print('[{0}] {1}'.format(proc.pid, line.decode('utf-8')), end='')
