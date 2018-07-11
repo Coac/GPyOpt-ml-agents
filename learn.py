@@ -1,6 +1,5 @@
 # # Unity ML-Agents Toolkit
 # ## ML-Agent Learning
-# Modified to add trainer-config-path as parameter
 
 import logging
 

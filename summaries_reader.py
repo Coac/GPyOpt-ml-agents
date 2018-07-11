@@ -8,7 +8,6 @@ class SummariesReader(object):
         print(last_event_path)
         self.event = event_accumulator.EventAccumulator(last_event_path, size_guidance={event_accumulator.SCALARS:0});
         self.event.Reload();
-        print(self.event.scalars.Keys())
 
     def get_scalar_keys(self):
         return self.event.scalars.Keys()
@@ -29,7 +28,8 @@ def get_latest_file(path, *paths):
     return latest_file
 
 
-sr = SummariesReader('ppo')
+if __name__ == '__main__':
+    sr = SummariesReader('ppo')
 
-print(sr.get_scalar_keys())
-print(sr.get_scalar('Info/cumulative_reward'))
+    print(sr.get_scalar_keys())
+    print(sr.get_scalar('Info/cumulative_reward'))
