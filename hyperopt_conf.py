@@ -2,4 +2,4 @@ definition = [{'name': 'var_1', 'type': 'continuous', 'domain': (-1,1)}, {'name'
 
 batch_size = 4
 num_cores = 4
-max_iter = 5
+max_iter = 1

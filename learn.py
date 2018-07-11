@@ -30,7 +30,7 @@ if __name__ == '__main__':
       --worker-id=<n>            Number to add to communication port (5005). Used for multi-environment [default: 0].
       --docker-target-name=<dt>  Docker Volume to store curriculum, executable and model files [default: Empty].
       --no-graphics              Whether to run the Unity simulator in no-graphics mode [default: False].
-      --trainer-config-path      Training config yaml [default: False].
+      --trainer-config-path=<path>      Training config yaml [default: False].
     '''
 
     options = docopt(_USAGE)

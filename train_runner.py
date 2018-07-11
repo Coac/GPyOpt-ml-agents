@@ -1,12 +1,15 @@
 import portpicker
 import subprocess
+import sys
+from datetime import datetime
+
 from config_generator import ConfigGenerator
+from summaries_reader import SummariesReader
 
 class TrainRunner(object):
     def __init__(self, env_name):
         self.env_name = env_name
         self.conf_gen = ConfigGenerator()
-
 
     def f(self, params):
         '''
@@ -15,30 +18,28 @@ class TrainRunner(object):
         '''
         conf_path = self.conf_gen.generate(params)
 
-        run_id = 'ppo'
-        proc = self.start_train_process(env_name, conf_path, run_id)
+        run_id = datetime.now().strftime("%Y-%m-%d_%H-%M-%S.%f")
+        proc = self.start_train_process(conf_path, run_id)
+        for line in iter(proc.stdout.readline, b''):
+            print('[{0}] {1}'.format(proc.pid, line.decode('utf-8')), end='')
         proc.wait()
 
-        reward = SummariesReader(run_id).get_scalar('Info/cumulative_reward')
-        print('Youpi c\'est terminé')
+        reward = SummariesReader(run_id).get_scalar('Info/cumulative_reward')[-1].value
 
         return reward
 
-    # x^2 + y^3 + 5
-    def f(self, params):
-        return params[0][0]**2 + params[0][1] **3 + 5
+    # # x^2 + y^3 + 5
+    # def f(self, params):
+    #     return params[0][0]**2 + params[0][1] **3 + 5
 
-
-    @staticmethod
-    def start_train_process(env_name, conf_path):
+    def start_train_process(self, conf_path, run_id):
         unused_port = portpicker.pick_unused_port()
-        proc = subprocess.Popen(['python', 'learn.py', env_name, '--train', '--worker-id=' + str(unused_port), '--trainer-config-path=' + str(conf_path)],
+        proc = subprocess.Popen(['python', 'learn.py', self.env_name, '--train', '--worker-id=' + str(unused_port), '--trainer-config-path=' + str(conf_path), '--run-id=' + run_id],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         return proc
 
-
 if __name__ == '__main__':
     train_runner = TrainRunner('test123')
-    reward = train_runner.f(params)
+    reward = train_runner.f([[1,1]])
     print(reward)

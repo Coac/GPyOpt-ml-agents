@@ -6,7 +6,7 @@ class ConfigGenerator(object):
         pass
 
     def generate(self, params):
-        conf_path = 'lol'
+        conf_path = 'trainer_config.yaml'
 
         print(definition)
 

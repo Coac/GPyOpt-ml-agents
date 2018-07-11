@@ -5,7 +5,6 @@ import glob
 class SummariesReader(object):
     def __init__(self, name):
         last_event_path = get_latest_file('./summaries/' + name + '/*')
-        print(last_event_path)
         self.event = event_accumulator.EventAccumulator(last_event_path, size_guidance={event_accumulator.SCALARS:0});
         self.event.Reload();
 
@@ -29,7 +28,7 @@ def get_latest_file(path, *paths):
 
 
 if __name__ == '__main__':
-    sr = SummariesReader('ppo')
+    sr = SummariesReader('2018-07-11_13-57-55.645635')
 
     print(sr.get_scalar_keys())
-    print(sr.get_scalar('Info/cumulative_reward'))
+    print(sr.get_scalar('Info/cumulative_reward')[-1].value)

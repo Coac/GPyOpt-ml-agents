@@ -5,6 +5,7 @@ import signal
 import sys
 from multiprocessing.dummy import Pool as ThreadPool
 import portpicker
+from train_runner import TrainRunner
 
 def output_reader(proc):
     for line in iter(proc.stdout.readline, b''):
@@ -22,11 +23,11 @@ def terminate_proc(sig, proc):
 if __name__ == '__main__':
     procs = []
 
+    train_runner = TrainRunner('test123')
+
+    # TODO: grid search
     for worker_id in range(10):
-        unused_port = portpicker.pick_unused_port()
-        proc = subprocess.Popen(['python', 'learn.py', 'test123.x86_64', '--train', '--worker-id=' + str(unused_port)],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT)
+        proc = train_runner.start_train_process('', 'ppo')
         procs.append(proc)
 
 
