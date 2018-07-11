@@ -1,3 +1,13 @@
 models/
 summaries/
 unity-environment.log
+
+*.app
+*.exe
+*.x86_64
+*.x86
+
+*.DS_Store
+__pycache__
+
+*_Data
