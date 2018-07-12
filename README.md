@@ -1,4 +1,4 @@
-# hyperopt-ml-agents
+# GPyOpt-ml-agents
 Gaussian process optimization using [GPyOpt](https://github.com/SheffieldML/GPyOpt) for [Unity ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents/).
 
 If you are fed up with tuning your ml-agents training parameters by hand, this repository is made for you!
