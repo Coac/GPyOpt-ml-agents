@@ -1,15 +1,15 @@
-import os
-import subprocess
-import threading
 import signal
+import subprocess
 import sys
 from multiprocessing.dummy import Pool as ThreadPool
-import portpicker
-from train_runner import TrainRunner
+
 from docopt import docopt
-from parameter_grid import ParameterGrid
+
 from config_generator import ConfigGenerator
 from grid_search_conf import params_grid
+from parameter_grid import ParameterGrid
+from train_runner import TrainRunner
+
 
 def output_reader(proc):
     for line in iter(proc.stdout.readline, b''):
@@ -39,10 +39,10 @@ def grid_search(env_name, params_grid):
         procs.append(proc)
 
     def signal_handler(sig, frame):
-            print('You pressed Ctrl+C!')
-            for proc in procs:
-                terminate_proc(sig, proc)
-            sys.exit(0)
+        print('You pressed Ctrl+C!')
+        for proc in procs:
+            terminate_proc(sig, proc)
+        sys.exit(0)
 
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -54,9 +54,9 @@ def grid_search(env_name, params_grid):
 
 if __name__ == '__main__':
     _USAGE = '''
-    Usage:
-      grid_search (<env>)
-    '''
+        Usage:
+          grid_search (<env>)
+        '''
     options = docopt(_USAGE)
     env_name = options['<env>']
 

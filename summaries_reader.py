@@ -1,12 +1,14 @@
-from tensorboard.backend.event_processing import event_accumulator
-import os
 import glob
+import os
+
+from tensorboard.backend.event_processing import event_accumulator
+
 
 class SummariesReader(object):
     def __init__(self, name):
         last_event_path = get_latest_file('./summaries/' + name + '/*')
-        self.event = event_accumulator.EventAccumulator(last_event_path, size_guidance={event_accumulator.SCALARS:0});
-        self.event.Reload();
+        self.event = event_accumulator.EventAccumulator(last_event_path, size_guidance={event_accumulator.SCALARS: 0})
+        self.event.Reload()
 
     def get_scalar_keys(self):
         return self.event.scalars.Keys()
@@ -19,8 +21,8 @@ class SummariesReader(object):
 def get_latest_file(path, *paths):
     """Returns the name of the latest (most recent) file
     of the joined path(s)"""
-    fullpath = os.path.join(path, *paths)
-    list_of_files = glob.glob(fullpath)
+    full_path = os.path.join(path, *paths)
+    list_of_files = glob.glob(full_path)
     if not list_of_files:
         return None
     latest_file = max(list_of_files, key=os.path.getctime)

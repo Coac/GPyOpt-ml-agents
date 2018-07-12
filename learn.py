@@ -2,12 +2,10 @@
 # ## ML-Agent Learning
 
 import logging
-
 import os
+
 from docopt import docopt
-
 from unitytrainers.trainer_controller import TrainerController
-
 
 if __name__ == '__main__':
     logger = logging.getLogger("unityagents")

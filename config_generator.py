@@ -1,6 +1,7 @@
-import yaml
 import os
+
 import numpy as np
+import yaml
 
 from hyperopt_conf import definition
 
@@ -12,7 +13,6 @@ class ConfigGenerator(object):
         else:
             DEFAULT_CONF_PATH = 'trainer_config.yaml'
             self.trainer_config_path = DEFAULT_CONF_PATH
-
 
     def generate(self, env_name, params, output_file_name, params_dict_format=True):
         '''
@@ -44,7 +44,6 @@ class ConfigGenerator(object):
                 if variable['type'] == 'discrete':
                     value = np.int(value)
                 config_data[variable['name']] = value
-
 
         os.makedirs(os.path.dirname(output_conf_path), exist_ok=True)
         with open(output_conf_path, 'w') as output_file:

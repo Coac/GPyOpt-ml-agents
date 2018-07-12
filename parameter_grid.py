@@ -1,9 +1,9 @@
-# ---------- From scikit-learn source: https://github.com/scikit-learn/scikit-learn/blob/a24c8b46/sklearn/model_selection/_search.py#L48
+# From scikit-learn
+# source: https://github.com/scikit-learn/scikit-learn/blob/a24c8b46/sklearn/model_selection/_search.py#L48
+import operator
 from collections import Mapping
 from functools import partial, reduce
-import operator
 from itertools import product
-from docopt import docopt
 
 
 class ParameterGrid(object):
