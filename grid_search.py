@@ -13,7 +13,7 @@ from itertools import product
 from docopt import docopt
 
 from config_generator import ConfigGenerator
-
+from grid_search_conf import params_grid
 
 # ---------- From scikit-learn source: https://github.com/scikit-learn/scikit-learn/blob/a24c8b46/sklearn/model_selection/_search.py#L48
 class ParameterGrid(object):
@@ -174,10 +174,5 @@ if __name__ == '__main__':
     '''
     options = docopt(_USAGE)
     env_name = options['<env>']
-
-    params_grid = {
-        'learning_rate': [0.01, 0.02],
-        'num_epoch': [1, 2]
-    }
 
     grid_search(env_name, params_grid)
