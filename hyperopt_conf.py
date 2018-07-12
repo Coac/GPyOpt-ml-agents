@@ -36,6 +36,6 @@ definition = [{
   'domain': [32, 64, 128, 256, 512]
 }]
 
-batch_size = 4
-num_cores = 4
-max_iter = 1
+batch_size = 8
+num_cores = 52
+max_iter = 16

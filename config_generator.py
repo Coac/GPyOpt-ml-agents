@@ -1,5 +1,6 @@
 import yaml
 import os
+import numpy as np
 
 from hyperopt_conf import definition
 
@@ -39,7 +40,11 @@ class ConfigGenerator(object):
         else:
             params = params[0]
             for i, variable in enumerate(definition):
-                config_data[variable['name']] = params[i]
+                value = params[i]
+                if variable['type'] == 'discrete':
+                    value = np.int(value)
+                config_data[variable['name']] = value
+
 
         os.makedirs(os.path.dirname(output_conf_path), exist_ok=True)
         with open(output_conf_path, 'w') as output_file:
