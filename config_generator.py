@@ -13,7 +13,18 @@ class ConfigGenerator(object):
             self.trainer_config_path = DEFAULT_CONF_PATH
 
 
-    def generate(self, env_name, params, output_file_name):
+    def generate(self, env_name, params, output_file_name, params_dict_format=True):
+        '''
+        Use default config file and override it using the params.
+        Create the modified yaml config file.
+        If params_dict_format=True the params is like
+            {
+              "learning_rate": 0.001,
+              "epoch": 2
+            }
+        else
+            [[0.001, 2]]
+        '''
         params = params[0]
         output_conf_path = 'configs/' + output_file_name + '.yaml'
         config_data_root = yaml.load(open(self.trainer_config_path))
@@ -23,8 +34,12 @@ class ConfigGenerator(object):
         else:
             config_data = config_data_root['default']
 
-        for i, variable in enumerate(definition):
-            config_data[variable['name']] = params[i]
+        if params_dict_format:
+            for key, value in params.items():
+                config_data[key] = value
+        else:
+            for i, variable in enumerate(definition):
+                config_data[variable['name']] = params[i]
 
         os.makedirs(os.path.dirname(output_conf_path), exist_ok=True)
         with open(output_conf_path, 'w') as output_file:

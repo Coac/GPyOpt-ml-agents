@@ -18,7 +18,7 @@ class TrainRunner(object):
         '''
         run_id = self.env_name + '_' + datetime.now().strftime("%Y-%m-%d_%H-%M-%S.%f")
 
-        conf_path = self.conf_gen.generate(self.env_name, params, run_id)
+        conf_path = self.conf_gen.generate(self.env_name, params, run_id, params_dict_format=False)
         proc = self.start_train_process(conf_path, run_id)
         for line in iter(proc.stdout.readline, b''):
             print('[{0}] {1}'.format(proc.pid, line.decode('utf-8')), end='')
@@ -27,10 +27,6 @@ class TrainRunner(object):
         reward = SummariesReader(run_id).get_scalar('Info/cumulative_reward')[-1].value
 
         return reward
-
-    # # x^2 + y^3 + 5
-    # def f(self, params):
-    #     return params[0][0]**2 + params[0][1] **3 + 5
 
     def start_train_process(self, conf_path, run_id):
         unused_port = portpicker.pick_unused_port()
