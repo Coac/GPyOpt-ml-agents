@@ -23,10 +23,6 @@ definition = [{
     'type': 'continuous',
     'domain': [1e-4, 1e-2]
 }, {
-    'name': 'beta',
-    'type': 'continuous',
-    'domain': [1e-4, 1e-2]
-}, {
     'name': 'num_layers',
     'type': 'discrete',
     'domain': [1, 3]
