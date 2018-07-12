@@ -20,12 +20,11 @@ class ConfigGenerator(object):
         If params_dict_format=True the params is like
             {
               "learning_rate": 0.001,
-              "epoch": 2
+              "num_epoch": 2
             }
         else
             [[0.001, 2]]
         '''
-        params = params[0]
         output_conf_path = 'configs/' + output_file_name + '.yaml'
         config_data_root = yaml.load(open(self.trainer_config_path))
 
@@ -38,6 +37,7 @@ class ConfigGenerator(object):
             for key, value in params.items():
                 config_data[key] = value
         else:
+            params = params[0]
             for i, variable in enumerate(definition):
                 config_data[variable['name']] = params[i]
 
