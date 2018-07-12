@@ -18,7 +18,7 @@ Since Unity ML-Agents is using grpc, make sure you do not have any set proxy.
 
 The parameters contained in the config `trainer_config.yaml` is used as default when the parameters are not specified.
 
-The code uses a slightly modified ml-agents `learn.py` which accepts an additional parameter to specify the trainer_config file.
+The code uses a slightly modified ml-agents `learn.py` which accepts an additional parameter to specify the trainer config file.
 
 ###  Gaussian process optimization
 Modify the config file `hyperopt_conf.py` to fit your environment and run
