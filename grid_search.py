@@ -149,7 +149,7 @@ def grid_search(env_name, params_grid):
     for params in params_grid:
         run_id = str(params).strip("{}").replace(': ', '').replace('\'', '').replace(', ', '_')
         conf_path = conf_gen.generate(env_name, params, run_id, params_dict_format=True)
-        proc = train_runner.start_train_process(conf_path, 'ppo')
+        proc = train_runner.start_train_process(conf_path, run_id)
         procs.append(proc)
 
     def signal_handler(sig, frame):
