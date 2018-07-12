@@ -1,10 +1,17 @@
 import GPy
 import GPyOpt
 import hyperopt_conf
+from docopt import docopt
 from train_runner import TrainRunner
 
 if __name__ == '__main__':
-    train_runner = TrainRunner('3DBall')
+    _USAGE = '''
+    Usage:
+      hyperopt (<env>)
+    '''
+    options = docopt(_USAGE)
+
+    train_runner = TrainRunner(options['<env>'])
 
     bayesian_opt = GPyOpt.methods.BayesianOptimization(train_runner.f,
                                                     domain=hyperopt_conf.definition,

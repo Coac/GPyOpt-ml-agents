@@ -10,6 +10,7 @@ from collections import Mapping
 from functools import partial, reduce
 import operator
 from itertools import product
+from docopt import docopt
 
 from config_generator import ConfigGenerator
 
@@ -167,7 +168,13 @@ def grid_search(env_name, params_grid):
     pool.join()
 
 if __name__ == '__main__':
-    env_name = 'test123'
+    _USAGE = '''
+    Usage:
+      grid_search (<env>)
+    '''
+    options = docopt(_USAGE)
+    env_name = options['<env>']
+
     params_grid = {
         'learning_rate': [0.01, 0.02],
         'num_epoch': [1, 2]
