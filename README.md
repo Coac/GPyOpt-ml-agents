@@ -79,10 +79,6 @@ definition = [{
   'type': 'continuous',
   'domain': [1e-4, 1e-2]
 }, {
-  'name': 'beta',
-  'type': 'continuous',
-  'domain': [1e-4, 1e-2]
-}, {
   'name': 'num_layers',
   'type': 'discrete',
   'domain': [1, 3]
@@ -99,9 +95,14 @@ max_iter = 16
 
 Optimal params found achieving `91.4923095703125` as mean reward:
 ```
-1.00000000e-03 3.00000000e-01 9.20562624e-01 9.00000000e-01
- 3.00000000e+00 1.00000000e-04 1.00000000e-04 3.00000000e+00
- 2.56000000e+02
+learning_rate: 1.0e-03 
+epsilon: 0.3
+gamma: 9.20562624e-01
+lambd: 0.9
+num_epoch: 3
+beta: 1.0e-04
+num_layers: 3
+hidden_units: 256
 ```
 
 ![screenshot](docs/3dball_hyperopt_10ksteps.png)
