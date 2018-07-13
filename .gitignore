@@ -1,5 +1,6 @@
 models/
 summaries/
+configs/
 unity-environment.log
 
 *.app
