@@ -89,18 +89,18 @@ definition = [{
 }]
 
 batch_size = 8
-num_cores = 16
+num_cores = 32
 max_iter = 16
 ```
 
-Optimal params found achieving `91.4923095703125` as mean reward:
+Optimal params found achieving `96.80000305175781` as mean reward:
 ```
 learning_rate: 1.0e-03 
 epsilon: 0.3
-gamma: 9.20562624e-01
-lambd: 0.9
+gamma: 0.995
+lambd: 0.95
 num_epoch: 3
-beta: 1.0e-04
+beta: 1.0e-02
 num_layers: 3
 hidden_units: 256
 ```
