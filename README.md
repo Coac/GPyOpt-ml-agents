@@ -23,7 +23,7 @@ The code uses a slightly modified ml-agents `learn.py` which accepts an addition
 ###  Gaussian process optimization
 Modify the config file `hyperopt_conf.py` to fit your environment and run
 ```
-python hyperopt.py (<env>)
+python hyperopt.py <env>
 ```
 The optimization algorithm will explore the parameters space and try to maximize the final reward at `max_steps`. The reward is read in the tensorboard summary event file.
 
@@ -37,13 +37,13 @@ If your training is too long to run multiple iterations, you can always use the 
 
 Specify your hyperparameter space dict as `params_grid` in `grid_search_conf.py` and run
 ```
-python grid_search.py (<env>)
+python grid_search.py <env>
 ```
 
 The grid search currently runs in parallel all the combinations of the parameters space without taking into account the number of CPU core, so beware to not specify a too large search space.
 
 You can stop the training to generate the graph for each instance whenever you want using a simple `CTRL+C`.
-
+It is also possible to reload the saved model to continue training using the `--load` option.
 
 
 ## Example

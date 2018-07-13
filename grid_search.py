@@ -24,7 +24,7 @@ def terminate_proc(sig, proc):
     except subprocess.TimeoutExpired:
         print('-- [{0}]'.format(proc.pid), 'subprocess did not terminate in time')
 
-def grid_search(env_name, params_grid):
+def grid_search(env_name, params_grid, load):
     conf_gen = ConfigGenerator()
     procs = []
 
@@ -35,7 +35,7 @@ def grid_search(env_name, params_grid):
     for params in params_grid:
         run_id = str(params).strip("{}").replace(': ', '').replace('\'', '').replace(', ', '_')
         conf_path = conf_gen.generate(env_name, params, run_id, params_dict_format=True)
-        proc = train_runner.start_train_process(conf_path, run_id)
+        proc = train_runner.start_train_process(conf_path, run_id, load)
         procs.append(proc)
 
     def signal_handler(sig, frame):
@@ -55,9 +55,19 @@ def grid_search(env_name, params_grid):
 if __name__ == '__main__':
     _USAGE = '''
         Usage:
-          grid_search (<env>)
+          grid_search <env> [options]
+          grid_search --help
+
+        Options:
+            --load                     Whether to load the model or randomly initialize [default: False].
         '''
     options = docopt(_USAGE)
     env_name = options['<env>']
 
-    grid_search(env_name, params_grid)
+    load = options['--load']
+    if load:
+        load = '--load'
+    else:
+        load = ''
+
+    grid_search(env_name, params_grid, load)

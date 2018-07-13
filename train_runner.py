@@ -29,10 +29,14 @@ class TrainRunner(object):
 
         return reward
 
-    def start_train_process(self, conf_path, run_id):
+    def start_train_process(self, conf_path, run_id, options=None):
         unused_port = portpicker.pick_unused_port()
-        proc = subprocess.Popen(['python', 'learn.py', self.env_name, '--train', '--worker-id=' + str(unused_port),
-                                 '--trainer-config-path=' + str(conf_path), '--run-id=' + run_id],
+        command = ['python', 'learn.py', self.env_name, '--train', '--worker-id=' + str(unused_port),
+                                 '--trainer-config-path=' + str(conf_path), '--run-id=' + run_id]
+        if options:
+            command.append(options)
+
+        proc = subprocess.Popen(command,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         return proc
