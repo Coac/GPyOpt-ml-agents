@@ -26,5 +26,10 @@ if __name__ == '__main__':
 
     bayesian_opt.run_optimization(hyperopt_conf.max_iter)
 
+    print('X:', bayesian_opt.X)
+    print('Y:', bayesian_opt.Y)
+
     print('Best hyperparameters:', bayesian_opt.x_opt)
     print('Max reward:', bayesian_opt.fx_opt)
+
+    bayesian_opt.plot_convergence()
