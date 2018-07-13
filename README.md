@@ -52,7 +52,7 @@ You can stop the training to generate the graph for each instance whenever you w
 
 We are searching for the best hyperparameters that maximize the reward at 10k steps.
 
-Config and Parameter space:
+Config and Parameters space:
 ```
 definition = [{
   'name': 'learning_rate',
@@ -95,7 +95,7 @@ max_iter = 16
 
 Optimal params found achieving `96.80000305175781` as mean reward:
 ```
-learning_rate: 1.0e-03 
+learning_rate: 1.0e-03
 epsilon: 0.3
 gamma: 0.995
 lambd: 0.95
