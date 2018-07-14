@@ -7,6 +7,7 @@ If you are fed up with tuning your ml-agents training parameters by hand, this r
 Follow the ml-agents installation documentation to install it as a python module:
 [Link](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation.md)
 
+If you plan to use a GPU, you need to modify the ml-agents code to prevent tensorflow session to not allocate all the memory. Set this `gpu_options.allow_growth = True` to the options when creating the session. For more info see [this](https://github.com/Unity-Technologies/ml-agents/issues/612)
 
 And install repository dependencies:
 ```
