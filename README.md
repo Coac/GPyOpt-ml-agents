@@ -18,6 +18,7 @@ pip install -r requirements.txt
 Since Unity ML-Agents is using grpc, make sure you do not have any set proxy.
 
 The parameters contained in the config `trainer_config.yaml` is used as default when the parameters are not specified.
+Make sure your `max_steps` is greater than `summary_freq` and the steps required to finish an episode.
 
 The code uses a slightly modified ml-agents `learn.py` which accepts an additional parameter to specify the trainer config file.
 
